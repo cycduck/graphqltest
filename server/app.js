@@ -2,6 +2,7 @@ const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const schema = require('./schema/schema'); // 31:15
 // install graphql and express graphql
+const mongoose = require('mongoose');
 const app = express();
 
 // bind express with graphql
@@ -12,7 +13,7 @@ app.use('/graphql', graphqlHTTP({
     // use graphical to check the data
 }))
 
-// stopped at 1:???:45
+// stopped at 1:25:45
 
 app.listen(4000, () => {
     console.log('now listening for requests on port 4000');

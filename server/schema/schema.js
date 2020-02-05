@@ -28,6 +28,7 @@ const BookType = new GraphQLObjectType({
     fields: () => ({ //34:40 why does this need to be a function, 39:00
         // to ensure everything is defined when they are called 
         // https://youtu.be/ZQL7tL2S0oQ?t=1910
+        // Because it's a call back function, so it runs to the end and then goes runs the call back??? https://youtu.be/ed8SzALpx1Q?t=4976
         id: {type: GraphQLID}, // special GQL ID type, if you console.log args.id it is still a string,  the ID type is for GQL 1:00:00
         name: {type: GraphQLString},// special GQL type
         genre: {type: GraphQLString},
@@ -82,6 +83,27 @@ const RootQuery = new GraphQLObjectType({
             args: {id:{type: GraphQLID}},
             resolve(parent, args){
                 return _.find(authors, {id:args.id});
+            }
+        },
+        books: {
+            // find a list of books
+            type: new GraphQLList(BookType),
+            resolve(parent, args){
+                return books;
+            }
+        },
+        // {
+        //     books{
+        //         name
+        //         author{
+        //         name
+        //         }
+        //     }
+    //     }
+        authors: {
+            type: new GraphQLList(AuthorType),
+            resolve(parent, args){
+                return authors
             }
         }
     }
