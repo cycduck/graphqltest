@@ -15,7 +15,7 @@ const app = express();
 //     console.log('conneted to database');
 // });
 const db = require ("./config/key").mongoURI;
-mongoose.connect(db, { dbName: 'graphQL'})
+mongoose.connect(db, { dbName: 'graphQL', useNewUrlParser: true, useUnifiedTopology: true})
     .then(()=> console.log('mongodb connected'))
     .catch(err => console.log('error', err));
 
